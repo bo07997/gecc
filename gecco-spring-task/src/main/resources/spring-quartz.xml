@@ -24,7 +24,7 @@
 		key="org.quartz.jobStore.tablePrefix">QRTZ_</prop> <prop key="org.quartz.jobStore.dataSource">quartzDataSource</prop> 
 		</props> </property> </bean> -->
 
-	<!-- quartz-2.x的配置 -->
+	<!-- quartz-2.x的配置 ,调度工厂-->
 	<bean name="startQuartz" lazy-init="false" autowire="no"
 		class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
 		<property name="triggers">

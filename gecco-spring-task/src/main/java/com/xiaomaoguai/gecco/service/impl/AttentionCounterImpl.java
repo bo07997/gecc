@@ -18,7 +18,7 @@ public class AttentionCounterImpl implements AttentionCounter {
 //	@Autowired
 //	private LocationService locationService;
 
-		@Resource
+	@Resource
 	private PipelineFactory pipelineFactory;
 
 	@Override

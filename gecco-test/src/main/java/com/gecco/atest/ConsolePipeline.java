@@ -4,19 +4,31 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Writer;
+import java.util.List;
 
-import com.alibaba.fastjson.JSON;
+import redis.clients.jedis.Jedis;
+
+import com.gecco.atest.filter.FilterInter;
+import com.gecco.atest.filterimpl.BookUrls;
+import com.gecco.atest.redis.RedisUtil;
 import com.geccocrawler.gecco.annotation.PipelineName;
-import com.geccocrawler.gecco.demo.taobao.Type;
 import com.geccocrawler.gecco.pipeline.Pipeline;
-import com.geccocrawler.gecco.spider.SpiderBean;
+import com.geccocrawler.gecco.scheduler.SchedulerContext;
 
-@PipelineName("consolePipeline")
+@PipelineName("bookPipeline")
 public class ConsolePipeline implements Pipeline<NullATest> {
 
     @Override
     public void process(NullATest aTest) {
-
+    	FilterInter fInter =new BookUrls();
+    List<Crawurl> newUrls =fInter.filterBookUrls(aTest.getUrlList());
+    Jedis jedis = RedisUtil.getJedis();
+    	if(newUrls!=null){
+    		for(Crawurl url:newUrls){
+    			
+    			SchedulerContext.into(aTest.getRequest().subRequest(url.getUrl()));
+    		}
+    	}
     	File file = new File("D://a.txt");
     	
     		
@@ -30,11 +42,10 @@ public class ConsolePipeline implements Pipeline<NullATest> {
 					e.printStackTrace();
 				}	// 通过对象多态性，进行实例化
     			// 第3步、进行写操作
-    			String str = aTest.getHref() ;
-    			String str2 = aTest.getText() ;// 准备一个字符串
-    			System.out.println(str+":"+str2);
+    		System.out.println(aTest.toString());
     			try {
-					out.write(str) ;
+    				
+					out.write(aTest.toString()) ;
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

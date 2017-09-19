@@ -17,7 +17,7 @@ import java.util.List;
  * @Data : 2016年3月29日 下午3:59:19
  * @Version:V1.00
  */
-@Gecco(matchUrl = "http://www.meizitu.com/a/{code}.html", pipelines = { "consolePipeline", "bigPicPipeline" })
+@Gecco(matchUrl = "http://www.meizitu.com/a/{picInfoId}.html", pipelines = { "consolePipeline", "bigPicPipeline" })
 public class BigPic implements HtmlBean {
 
 	private static final long serialVersionUID = 1L;
@@ -47,7 +47,6 @@ public class BigPic implements HtmlBean {
 
 	public static void main(String[] args) {
 		HttpGetRequest start = new HttpGetRequest("http://www.meizitu.com/a/375.html");
-		start.setCharset("GBK");
 		GeccoEngine.create().classpath("com.xiaomaoguai.gecco.crawler").start(start).interval(2000).loop(false).run();
 	}
 
