@@ -16,7 +16,8 @@ import redis.clients.jedis.Jedis;
 import com.geccocrawler.gecco.annotation.PipelineName;
 import com.geccocrawler.gecco.pipeline.Pipeline;
 import com.geccocrawler.gecco.scheduler.SchedulerContext;
-import com.xiaomaoguai.gecco.testcrawler.filter.filterimpl.BookUrls;
+import com.xiaomaoguai.gecco.testcrawler.common.MyAjax;
+import com.xiaomaoguai.gecco.testcrawler.common.filter.BookUrls;
 import com.xiaomaoguai.gecco.testcrawler.redis.RedisUtil;
 /**
  * 

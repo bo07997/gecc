@@ -1,4 +1,4 @@
-package com.xiaomaoguai.gecco.testcrawler.filter.filterimpl;
+package com.xiaomaoguai.gecco.testcrawler.common.filter;
 
 import java.util.ArrayList;
 import java.util.List;

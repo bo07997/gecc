@@ -1,4 +1,4 @@
-package com.xiaomaoguai.gecco.testcrawler;
+package com.xiaomaoguai.gecco.testcrawler.common;
 
 import java.io.BufferedReader;
 import java.io.IOException;
