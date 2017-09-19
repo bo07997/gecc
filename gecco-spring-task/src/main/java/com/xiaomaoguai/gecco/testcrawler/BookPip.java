@@ -30,17 +30,17 @@ import com.xiaomaoguai.gecco.testcrawler.redis.RedisUtil;
  * @since 1.0
  */
 @PipelineName("bookPipeline")
-public class BookPip implements Pipeline<TestBook>{
+public class BookPip implements Pipeline<Book>{
 Logger Logger = LoggerFactory.getLogger(BookPip.class);
 private  static Jedis Jedis = RedisUtil.getJedis();
 	@Override
-	public void process(TestBook bean) {
+	public void process(Book bean) {
 	/*
 	 * AJAX请求部分,后期改造结构
 	 */
 		String url = "http://book.qidian.com/ajax/comment/index?_csrfToken=e7LIJjWalES4KWNJYvPwwyRZ1PTvOiVWd4W0Gpbm&bookId="
 				+ ""+bean.getId();
-		String strs = TestAjax.sendGet(url);//{"data":{"rate":7.5,"userCount":181,
+		String strs = MyAjax.sendGet(url);//{"data":{"rate":7.5,"userCount":181,
 		String result = "";
 		 String regEx = "rate\":(.*?),";
 		    // 编译正则表达式

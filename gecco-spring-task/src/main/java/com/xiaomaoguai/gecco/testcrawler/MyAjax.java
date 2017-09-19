@@ -9,11 +9,11 @@ import java.io.UnsupportedEncodingException;
 import java.net.URL;
 import java.net.URLConnection;
 
-public class TestAjax {
+public class MyAjax {
 public static void main(String[] args) throws UnsupportedEncodingException {
    
    //发送POST请求 
-    TestAjax.sendGet("http://p.3.cn/prices/mgets?skuIds=J_155465"); 
+    MyAjax.sendGet("http://p.3.cn/prices/mgets?skuIds=J_155465"); 
 }
 /** 
  * 向指定URL发送POST方法的请求 

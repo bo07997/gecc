@@ -1,21 +1,17 @@
 package com.xiaomaoguai.gecco.testcrawler;
 
-import java.util.ArrayList;
 import java.util.List;
-
-import com.geccocrawler.gecco.GeccoEngine;
-import com.geccocrawler.gecco.annotation.Ajax;
 import com.geccocrawler.gecco.annotation.Gecco;
 import com.geccocrawler.gecco.annotation.Href;
 import com.geccocrawler.gecco.annotation.HtmlField;
+import com.geccocrawler.gecco.annotation.Image;
 import com.geccocrawler.gecco.annotation.Request;
 import com.geccocrawler.gecco.annotation.RequestParameter;
-import com.geccocrawler.gecco.request.HttpGetRequest;
 import com.geccocrawler.gecco.request.HttpRequest;
 import com.geccocrawler.gecco.spider.HtmlBean;
 
 @Gecco(matchUrl = "http://book.qidian.com/info/{id}", pipelines = { "consolePipeline", "bookPipeline" })
-public class TestBook implements HtmlBean{
+public class Book implements HtmlBean{
 
 	private static final long serialVersionUID = 1L;
 	
@@ -45,9 +41,15 @@ public class TestBook implements HtmlBean{
 	@Href
 	@HtmlField(cssPath = "a")
 	private List<String> urls;
-   
-
 	
+   @HtmlField(cssPath ="body > div.wrap > div.book-detail-wrap.center990 > div.book-information.cf > div.book-info > p:nth-child(4) > em:nth-child(7)")
+	private String tuijianString;
+
+   @Image
+   @HtmlField(cssPath = "#bookImg > img")
+   private String pictureString;
+	@HtmlField(cssPath = "body > div.wrap > div.book-detail-wrap.center990 > div.book-content-wrap.cf > div.left-wrap.fl > div.book-info-detail > div.book-intro > p")
+   private String productInstruction;
 
 	public List<String> getUrls() {
 		return urls;
@@ -123,31 +125,64 @@ public class TestBook implements HtmlBean{
 	
 
 
-	@Override
-	public String toString() {
-		return "TestBook [request=" + request + ", id=" + id + ", bookName="
-				+ bookName + ", auther=" + auther + ", instruction="
-				+ instruction + ", wordCount=" + wordCount + ", mousePress="
-				+ mousePress + ", booRank=" + booRank + ", urls=" + urls + "]";
+	public String getTuijianString() {
+		return tuijianString;
 	}
 
-	public static void main(String[] args) {
+	public void setTuijianString(String tuijianString) {
+		this.tuijianString = tuijianString;
+	}
+
+	public String getPictureString() {
+		return pictureString;
+	}
+
+	public void setPictureString(String pictureString) {
+		this.pictureString = pictureString;
+	}
+
+	public String getProductInstruction() {
+		return productInstruction;
+	}
+
+	public void setProductInstruction(String productInstruction) {
+		this.productInstruction = productInstruction;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+	@Override
+	public String toString() {
+		return "Book [request=" + request + ", id=" + id + ", bookName="
+				+ bookName + ", auther=" + auther + ", instruction="
+				+ instruction + ", wordCount=" + wordCount + ", mousePress="
+				+ mousePress + ", booRank=" + booRank + ", urls=" + urls
+				+ ", tuijianString=" + tuijianString + ", pictureString="
+				+ pictureString + ", productInstruction=" + productInstruction
+				+ "]";
+	}
+
+	
+
+/*	public static void main(String[] args) {
 	HttpRequest aHttpRequest1=	new HttpGetRequest("http://book.qidian.com/info/1005392714");
-/*	HttpRequest aHttpRequest2=	new HttpGetRequest("http://book.qidian.com/info/1010473893");
+	HttpRequest aHttpRequest2=	new HttpGetRequest("http://book.qidian.com/info/1010473893");
 	HttpRequest aHttpRequest3=	new HttpGetRequest("http://book.qidian.com/info/1010179519");
 	HttpRequest aHttpRequest4=	new HttpGetRequest("http://book.qidian.com/info/1010239734");
-	HttpRequest aHttpRequest5=	new HttpGetRequest("http://book.qidian.com/info/1010473379");*/
+	HttpRequest aHttpRequest5=	new HttpGetRequest("http://book.qidian.com/info/1010473379");
 	List<HttpRequest> requests = new ArrayList<HttpRequest>() ;
 	requests.add(aHttpRequest1);
-	/*requests.add(aHttpRequest2);
+	requests.add(aHttpRequest2);
 	requests.add(aHttpRequest3);
 	requests.add(aHttpRequest4);
-	requests.add(aHttpRequest5);*/
+	requests.add(aHttpRequest5);
 	
 		GeccoEngine.create().classpath("com.xiaomaoguai.gecco.testcrawler").thread(1)
 		.interval(2000).start(requests).loop(false)
 		.run();
-	}
+	}*/
     
 	
 }
