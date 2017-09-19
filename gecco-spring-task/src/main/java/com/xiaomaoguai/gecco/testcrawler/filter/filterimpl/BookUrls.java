@@ -19,11 +19,21 @@ import java.util.regex.Pattern;
 public class BookUrls {
 	//书籍过滤
 	 final static String book_pattern = "http://book.qidian.com/info/\\d+";
-	
-	public static List<String> filterBookUrls1(List<String> urls) {
+		//起点过滤
+	 final static String qidian_pattern = "http://book.qidian.com/info/\\d+";
+	public static List<String> filterBookUrls(List<String> urls) {
 		List<String> newUrls = new ArrayList<String>(); 
 		  for (String url : urls) {
 		         if(Pattern.matches(book_pattern, url)){
+		        	newUrls.add(url);
+		         }
+		      }
+		      return newUrls;
+	}
+	public static List<String> filterBookUrl_qidian(List<String> urls) {
+		List<String> newUrls = new ArrayList<String>(); 
+		  for (String url : urls) {
+		         if(Pattern.matches(qidian_pattern, url)){
 		        	newUrls.add(url);
 		         }
 		      }

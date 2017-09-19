@@ -56,7 +56,7 @@ private  static Jedis Jedis = RedisUtil.getJedis();
 		    /*
 		     * 过滤器部分,过滤非起点urls
 		     */
-		    List<String> urls = BookUrls.filterBookUrls1(bean.getUrls());
+		    List<String> urls = BookUrls.filterBookUrls(bean.getUrls());
 		    if(urls !=null){
 		    	bean.setUrls(urls);
 		    }

@@ -1,8 +1,6 @@
-package com.xiaomaoguai.gecco.bookcrawler;
-import com.geccocrawler.gecco.spider.Spider;
+package com.xiaomaoguai.gecco.testcrawler;
 import java.util.ArrayList;
 import java.util.List;
-
 import com.geccocrawler.gecco.GeccoEngine;
 import com.geccocrawler.gecco.request.HttpGetRequest;
 import com.geccocrawler.gecco.request.HttpRequest;

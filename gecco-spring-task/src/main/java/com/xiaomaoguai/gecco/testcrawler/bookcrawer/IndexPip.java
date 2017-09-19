@@ -1,4 +1,4 @@
-package com.xiaomaoguai.gecco.bookcrawler;
+package com.xiaomaoguai.gecco.testcrawler.bookcrawer;
 
 import java.util.List;
 
@@ -21,7 +21,7 @@ public class IndexPip implements Pipeline<Index_model>{
 		  /*
 	     * 过滤器部分,过滤非起点urls
 	     */
-	    List<String> urls = BookUrls.filterBookUrls_qiadian(bean.getUrlsList());
+	    List<String> urls = BookUrls.filterBookUrl_qidian(bean.getUrlsList());
 	    if(urls !=null&&urls.size()>0){
 	    	bean.setUrlsList(urls);
 	    }
