@@ -11,7 +11,7 @@ import com.geccocrawler.gecco.annotation.RequestParameter;
 import com.geccocrawler.gecco.request.HttpRequest;
 import com.geccocrawler.gecco.spider.HtmlBean;
 
-@Gecco(matchUrl = "http://book.qidian.com/info/{qiandianId}", pipelines = { "consolePipeline", "bookPipeline" })
+@Gecco(matchUrl = "http://book.qidian.com/info/{qidianId}", pipelines = { "consolePipeline", "bookPipeline" })
 public class bookInfo implements HtmlBean{
 
 	private static final long serialVersionUID = 1L;
@@ -21,6 +21,7 @@ public class bookInfo implements HtmlBean{
 	private HttpRequest request;
 	
 	private String bookId;
+	
 	@RequestParameter
 	private String qidianId;
 	

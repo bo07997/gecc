@@ -8,21 +8,14 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-
-
-
-import javax.annotation.Resource;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import redis.clients.jedis.Jedis;
-
 import com.geccocrawler.gecco.annotation.PipelineName;
 import com.geccocrawler.gecco.pipeline.Pipeline;
 import com.geccocrawler.gecco.scheduler.SchedulerContext;
+import com.xiaomaoguai.gecco.common.utils.SpringContextUtil;
 import com.xiaomaoguai.gecco.service.myservice.BookInfoService;
 import com.xiaomaoguai.gecco.testcrawler.common.MyAjax;
 import com.xiaomaoguai.gecco.testcrawler.common.filter.BookUrls;
@@ -44,11 +37,10 @@ import com.xiaomaoguai.gecco.testcrawler.redis.RedisUtil;
 public class BookPip implements Pipeline<bookInfo> {
 	Logger Logger = LoggerFactory.getLogger(BookPip.class);
 	private static Jedis Jedis = RedisUtil.getJedis();
-	@Resource(name = "bookInfoService")
-	private BookInfoService bookInfoService;
 
 	@Override
 	public void process(bookInfo bean) {
+		BookInfoService bookInfoService = SpringContextUtil.getBean("bookInfoServiceimpl");
 		/*
 		 * AJAX请求部分,后期改造结构
 		 */
@@ -56,7 +48,6 @@ public class BookPip implements Pipeline<bookInfo> {
 		String url = "http://book.qidian.com/ajax/comment/index?_csrfToken=e7LIJjWalES4KWNJYvPwwyRZ1PTvOiVWd4W0Gpbm&bookId="
 				+ "" + bean.getQidianId();
 		String strs = MyAjax.sendGet(url);// {"data":{"rate":7.5,"userCount":181,
-		System.out.println(bookInfoService);
 		@SuppressWarnings("unused")
 		String result = "";
 		String regEx = "rate\":(.*?),";
@@ -131,14 +122,10 @@ public class BookPip implements Pipeline<bookInfo> {
 		/*
 		 * 写入数据库
 		 */
-		try {
+		
 			int a = bookInfoService.insertBookInfo(bean);
-			System.out.println(a);
-		} catch (Exception e) {
-			Logger.error("【书籍信息插入】error!!!!!!!!!!!!!!!!!!!!!!");
-		}
+	
 
-		System.out.println();
 
 	}
 

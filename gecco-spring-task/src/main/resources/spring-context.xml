@@ -13,13 +13,14 @@
     <context:property-placeholder location="classpath:jdbc.properties"/>
 
     <!-- 使用annotation 自动注册bean, 并保证@Required、@Autowired的属性被注入 -->
-    <context:component-scan base-package="com.xiaomaoguai.gecco,com.geccocrawler.gecco.spring">
+    <context:component-scan base-package="com.xiaomaoguai.gecco.*,com.geccocrawler.gecco.*">
         <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
         <context:exclude-filter type="annotation"
                                 expression="org.springframework.web.bind.annotation.ControllerAdvice"/>
     </context:component-scan>
 
     <context:annotation-config/>
+    
     <bean class="com.xiaomaoguai.gecco.common.utils.SpringContextUtil"/>
 
     <!-- 配置dbcp数据源 -->
@@ -40,7 +41,7 @@
 
     <!-- 加载 mapper.xml 接口 配置文件 -->
     <bean id="mapperScannerConfigurer" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="com.xiaomaoguai.gecco.mapper"/>
+        <property name="basePackage" value="com.xiaomaoguai.gecco.sqlMapperXml"/>
     </bean>
 
     <!-- 使用annotation注解方式配置事务 -->
