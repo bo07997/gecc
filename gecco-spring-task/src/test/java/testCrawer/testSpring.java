@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.xiaomaoguai.gecco.service.myservice.bookInfoService;
+import com.xiaomaoguai.gecco.service.myservice.BookInfoService;
 import com.xiaomaoguai.gecco.testcrawler.bookInfo;
 /**
  * Created by codingBoy on 16/11/28.
@@ -19,7 +19,7 @@ import com.xiaomaoguai.gecco.testcrawler.bookInfo;
 public class testSpring {
     private final Logger logger= LoggerFactory.getLogger(this.getClass());
   @Autowired
-    private bookInfoService bookInfoService;
+    private BookInfoService bookInfoService;
 
     @Test
     public void getSeckillList() throws Exception {

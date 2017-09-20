@@ -1,11 +1,13 @@
 package com.xiaomaoguai.gecco.mapper.mymapper;
 
+import org.springframework.stereotype.Repository;
+
 import com.xiaomaoguai.gecco.testcrawler.bookInfo;
 
 
 
-
-public interface bookInfoMapper {
+@Repository
+public interface bookInfoMapper22 {
     int deleteByPrimaryKey(String bookId);
 
     int insert(bookInfo record);

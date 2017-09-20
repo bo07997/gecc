@@ -13,14 +13,13 @@
     <context:property-placeholder location="classpath:jdbc.properties"/>
 
     <!-- 使用annotation 自动注册bean, 并保证@Required、@Autowired的属性被注入 -->
-    <context:component-scan base-package="com.xiaomaoguai.gecco">
+    <context:component-scan base-package="com.xiaomaoguai.gecco,com.geccocrawler.gecco.spring">
         <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
         <context:exclude-filter type="annotation"
                                 expression="org.springframework.web.bind.annotation.ControllerAdvice"/>
     </context:component-scan>
 
     <context:annotation-config/>
-
     <bean class="com.xiaomaoguai.gecco.common.utils.SpringContextUtil"/>
 
     <!-- 配置dbcp数据源 -->

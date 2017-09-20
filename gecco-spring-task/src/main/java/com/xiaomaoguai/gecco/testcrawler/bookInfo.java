@@ -11,40 +11,24 @@ import com.geccocrawler.gecco.annotation.RequestParameter;
 import com.geccocrawler.gecco.request.HttpRequest;
 import com.geccocrawler.gecco.spider.HtmlBean;
 
-@Gecco(matchUrl = "http://book.qidian.com/info/{id}", pipelines = { "consolePipeline", "bookPipeline" })
+@Gecco(matchUrl = "http://book.qidian.com/info/{qiandianId}", pipelines = { "consolePipeline", "bookPipeline" })
 public class bookInfo implements HtmlBean{
 
 	private static final long serialVersionUID = 1L;
 	
-	public bookInfo( String bookId, String qiandianId,
-			String bookName, String auther, String instruction,
-			String wordCount, String mousePress, String booRank,
-			 String tuijian, String pictureString,
-			String productInstruction) {
-		this.bookId = bookId;
-		this.qiandianId = qiandianId;
-		this.bookName = bookName;
-		this.auther = auther;
-		this.instruction = instruction;
-		this.wordCount = wordCount;
-		this.mousePress = mousePress;
-		this.booRank = booRank;
-		this.tuijian = tuijian;
-		this.pictureString = pictureString;
-		this.productInstruction = productInstruction;
-	}
+
 	@Request
 	private HttpRequest request;
 	
 	private String bookId;
 	@RequestParameter
-	private String qiandianId;
+	private String qidianId;
 	
 	@HtmlField(cssPath = "body > div.wrap > div.book-detail-wrap.center990 > div.book-information.cf > div.book-info > h1 > em")
 	private String bookName;
   
 	@HtmlField(cssPath = "body > div.wrap > div.book-detail-wrap.center990 > div.book-information.cf > div.book-info > h1 > span > a")
-	private String auther;
+	private String author;
   
     @HtmlField(cssPath= "body > div.wrap > div.book-detail-wrap.center990 > div.book-information.cf > div.book-info > p.intro")
     private String instruction;
@@ -56,7 +40,7 @@ public class bookInfo implements HtmlBean{
     private String mousePress;
   
     //@Ajax(url="http://book.qidian.com/ajax/comment/index?_csrfToken=e7LIJjWalES4KWNJYvPwwyRZ1PTvOiVWd4W0Gpbm&bookId=1005392714")
-	private String booRank;
+	private String bookRank;
 	@Href
 	@HtmlField(cssPath = "a")
 	private List<String> urls;
@@ -69,6 +53,7 @@ public class bookInfo implements HtmlBean{
    private String pictureString;
 	@HtmlField(cssPath = "body > div.wrap > div.book-detail-wrap.center990 > div.book-content-wrap.cf > div.left-wrap.fl > div.book-info-detail > div.book-intro > p")
    private String productInstruction;
+	
 	public HttpRequest getRequest() {
 		return request;
 	}
@@ -81,11 +66,11 @@ public class bookInfo implements HtmlBean{
 	public void setBookId(String bookId) {
 		this.bookId = bookId;
 	}
-	public String getQiandianId() {
-		return qiandianId;
+	public String getQidianId() {
+		return qidianId;
 	}
-	public void setQiandianId(String qiandianId) {
-		this.qiandianId = qiandianId;
+	public void setQidianId(String qidianId) {
+		this.qidianId = qidianId;
 	}
 	public String getBookName() {
 		return bookName;
@@ -93,11 +78,11 @@ public class bookInfo implements HtmlBean{
 	public void setBookName(String bookName) {
 		this.bookName = bookName;
 	}
-	public String getAuther() {
-		return auther;
+	public String getAuthor() {
+		return author;
 	}
-	public void setAuther(String auther) {
-		this.auther = auther;
+	public void setAuthor(String author) {
+		this.author = author;
 	}
 	public String getInstruction() {
 		return instruction;
@@ -117,11 +102,11 @@ public class bookInfo implements HtmlBean{
 	public void setMousePress(String mousePress) {
 		this.mousePress = mousePress;
 	}
-	public String getBooRank() {
-		return booRank;
+	public String getBookRank() {
+		return bookRank;
 	}
-	public void setBooRank(String booRank) {
-		this.booRank = booRank;
+	public void setBooRank(String bookRank) {
+		this.bookRank = bookRank;
 	}
 	public List<String> getUrls() {
 		return urls;
@@ -154,10 +139,10 @@ public class bookInfo implements HtmlBean{
 	@Override
 	public String toString() {
 		return "Book [request=" + request + ", bookId=" + bookId
-				+ ", qiandianId=" + qiandianId + ", bookName=" + bookName
-				+ ", auther=" + auther + ", instruction=" + instruction
+				+ ", qidianId=" + qidianId + ", bookName=" + bookName
+				+ ", author=" + author + ", instruction=" + instruction
 				+ ", wordCount=" + wordCount + ", mousePress=" + mousePress
-				+ ", booRank=" + booRank + ", urls=" + urls
+				+ ", bookRank=" + bookRank + ", urls=" + urls
 				+ ", tuijian=" + tuijian + ", pictureString="
 				+ pictureString + ", productInstruction=" + productInstruction
 				+ "]";
