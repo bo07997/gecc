@@ -31,17 +31,18 @@ import com.xiaomaoguai.gecco.testcrawler.redis.RedisUtil;
  * @since 1.0
  */
 @PipelineName("bookPipeline")
-public class BookPip implements Pipeline<Book>{
+public class BookPip implements Pipeline<bookInfo>{
 Logger Logger = LoggerFactory.getLogger(BookPip.class);
 private  static Jedis Jedis = RedisUtil.getJedis();
 	@Override
-	public void process(Book bean) {
+	public void process(bookInfo bean) {
 	/*
 	 * AJAX请求部分,后期改造结构
 	 */
 		String url = "http://book.qidian.com/ajax/comment/index?_csrfToken=e7LIJjWalES4KWNJYvPwwyRZ1PTvOiVWd4W0Gpbm&bookId="
-				+ ""+bean.getId();
+				+ ""+bean.getQiandianId();
 		String strs = MyAjax.sendGet(url);//{"data":{"rate":7.5,"userCount":181,
+		@SuppressWarnings("unused")
 		String result = "";
 		 String regEx = "rate\":(.*?),";
 		    // 编译正则表达式
@@ -73,9 +74,6 @@ private  static Jedis Jedis = RedisUtil.getJedis();
 	    				Jedis.set(temp_url, "1");
 	    				//加入爬取队列
 	    				 SchedulerContext.into(bean.getRequest().subRequest(temp_url));
-					
-		    			
-						
 		    		}
 		    	}
 		    }
@@ -104,7 +102,6 @@ private  static Jedis Jedis = RedisUtil.getJedis();
 						
 						
 					} catch (IOException e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}// 将内容输出，保存文件
 	    		finally{

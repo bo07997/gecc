@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xiaomaoguai.gecco.testcrawler.bookInfo.bookInfoMapper">
+  <resultMap id="BaseResultMap" type="com.xiaomaoguai.gecco.testcrawler.bookInfo">
+    <id column="book_id" jdbcType="VARCHAR" property="bookId" />
+    <result column="qidian_id" jdbcType="VARCHAR" property="qidianId" />
+    <result column="book_name" jdbcType="VARCHAR" property="bookName" />
+    <result column="author" jdbcType="VARCHAR" property="author" />
+    <result column="instruction" jdbcType="VARCHAR" property="instruction" />
+    <result column="word_count" jdbcType="VARCHAR" property="wordCount" />
+    <result column="mouse_press" jdbcType="VARCHAR" property="mousePress" />
+    <result column="book_rank" jdbcType="VARCHAR" property="bookRank" />
+    <result column="tuijian" jdbcType="VARCHAR" property="tuijian" />
+    <result column="picture_string" jdbcType="VARCHAR" property="pictureString" />
+    <result column="product_instruction" jdbcType="VARCHAR" property="productInstruction" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    book_id, qidian_id, book_name, author, instruction, word_count, mouse_press, book_rank, 
+    tuijian, picture_string, product_instruction
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from book_info
+    where book_id = #{bookId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from book_info
+    where book_id = #{bookId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.xiaomaoguai.gecco.testcrawler.bookInfo">
+    insert into book_info (book_id, qidian_id, book_name, 
+      author, instruction, word_count, 
+      mouse_press, book_rank, tuijian, 
+      picture_string, product_instruction)
+    values (#{bookId,jdbcType=VARCHAR}, #{qidianId,jdbcType=VARCHAR}, #{bookName,jdbcType=VARCHAR}, 
+      #{author,jdbcType=VARCHAR}, #{instruction,jdbcType=VARCHAR}, #{wordCount,jdbcType=VARCHAR}, 
+      #{mousePress,jdbcType=VARCHAR}, #{bookRank,jdbcType=VARCHAR}, #{tuijian,jdbcType=VARCHAR}, 
+      #{pictureString,jdbcType=VARCHAR}, #{productInstruction,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xiaomaoguai.gecco.testcrawler.bookInfo">
+    insert into book_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="bookId != null">
+        book_id,
+      </if>
+      <if test="qidianId != null">
+        qidian_id,
+      </if>
+      <if test="bookName != null">
+        book_name,
+      </if>
+      <if test="author != null">
+        author,
+      </if>
+      <if test="instruction != null">
+        instruction,
+      </if>
+      <if test="wordCount != null">
+        word_count,
+      </if>
+      <if test="mousePress != null">
+        mouse_press,
+      </if>
+      <if test="bookRank != null">
+        book_rank,
+      </if>
+      <if test="tuijian != null">
+        tuijian,
+      </if>
+      <if test="pictureString != null">
+        picture_string,
+      </if>
+      <if test="productInstruction != null">
+        product_instruction,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="bookId != null">
+        #{bookId,jdbcType=VARCHAR},
+      </if>
+      <if test="qidianId != null">
+        #{qidianId,jdbcType=VARCHAR},
+      </if>
+      <if test="bookName != null">
+        #{bookName,jdbcType=VARCHAR},
+      </if>
+      <if test="author != null">
+        #{author,jdbcType=VARCHAR},
+      </if>
+      <if test="instruction != null">
+        #{instruction,jdbcType=VARCHAR},
+      </if>
+      <if test="wordCount != null">
+        #{wordCount,jdbcType=VARCHAR},
+      </if>
+      <if test="mousePress != null">
+        #{mousePress,jdbcType=VARCHAR},
+      </if>
+      <if test="bookRank != null">
+        #{bookRank,jdbcType=VARCHAR},
+      </if>
+      <if test="tuijian != null">
+        #{tuijian,jdbcType=VARCHAR},
+      </if>
+      <if test="pictureString != null">
+        #{pictureString,jdbcType=VARCHAR},
+      </if>
+      <if test="productInstruction != null">
+        #{productInstruction,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xiaomaoguai.gecco.testcrawler.bookInfo">
+    update book_info
+    <set>
+      <if test="qidianId != null">
+        qidian_id = #{qidianId,jdbcType=VARCHAR},
+      </if>
+      <if test="bookName != null">
+        book_name = #{bookName,jdbcType=VARCHAR},
+      </if>
+      <if test="author != null">
+        author = #{author,jdbcType=VARCHAR},
+      </if>
+      <if test="instruction != null">
+        instruction = #{instruction,jdbcType=VARCHAR},
+      </if>
+      <if test="wordCount != null">
+        word_count = #{wordCount,jdbcType=VARCHAR},
+      </if>
+      <if test="mousePress != null">
+        mouse_press = #{mousePress,jdbcType=VARCHAR},
+      </if>
+      <if test="bookRank != null">
+        book_rank = #{bookRank,jdbcType=VARCHAR},
+      </if>
+      <if test="tuijian != null">
+        tuijian = #{tuijian,jdbcType=VARCHAR},
+      </if>
+      <if test="pictureString != null">
+        picture_string = #{pictureString,jdbcType=VARCHAR},
+      </if>
+      <if test="productInstruction != null">
+        product_instruction = #{productInstruction,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where book_id = #{bookId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xiaomaoguai.gecco.testcrawler.bookInfo">
+    update book_info
+    set qidian_id = #{qidianId,jdbcType=VARCHAR},
+      book_name = #{bookName,jdbcType=VARCHAR},
+      author = #{author,jdbcType=VARCHAR},
+      instruction = #{instruction,jdbcType=VARCHAR},
+      word_count = #{wordCount,jdbcType=VARCHAR},
+      mouse_press = #{mousePress,jdbcType=VARCHAR},
+      book_rank = #{bookRank,jdbcType=VARCHAR},
+      tuijian = #{tuijian,jdbcType=VARCHAR},
+      picture_string = #{pictureString,jdbcType=VARCHAR},
+      product_instruction = #{productInstruction,jdbcType=VARCHAR}
+    where book_id = #{bookId,jdbcType=VARCHAR}
+  </update>
+  <resultMap id="BaseResultMap" type="com.xiaomaoguai.gecco.testcrawler.bookInfo">
+    <id column="book_id" jdbcType="VARCHAR" property="bookId" />
+    <result column="qidian_id" jdbcType="VARCHAR" property="qidianId" />
+    <result column="book_name" jdbcType="VARCHAR" property="bookName" />
+    <result column="author" jdbcType="VARCHAR" property="author" />
+    <result column="instruction" jdbcType="VARCHAR" property="instruction" />
+    <result column="word_count" jdbcType="VARCHAR" property="wordCount" />
+    <result column="mouse_press" jdbcType="VARCHAR" property="mousePress" />
+    <result column="book_rank" jdbcType="VARCHAR" property="bookRank" />
+    <result column="tuijian" jdbcType="VARCHAR" property="tuijian" />
+    <result column="picture_string" jdbcType="VARCHAR" property="pictureString" />
+    <result column="product_instruction" jdbcType="VARCHAR" property="productInstruction" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    book_id, qidian_id, book_name, author, instruction, word_count, mouse_press, book_rank, 
+    tuijian, picture_string, product_instruction
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from book_info
+    where book_id = #{bookId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from book_info
+    where book_id = #{bookId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.xiaomaoguai.gecco.testcrawler.bookInfo">
+    insert into book_info (book_id, qidian_id, book_name, 
+      author, instruction, word_count, 
+      mouse_press, book_rank, tuijian, 
+      picture_string, product_instruction)
+    values (#{bookId,jdbcType=VARCHAR}, #{qidianId,jdbcType=VARCHAR}, #{bookName,jdbcType=VARCHAR}, 
+      #{author,jdbcType=VARCHAR}, #{instruction,jdbcType=VARCHAR}, #{wordCount,jdbcType=VARCHAR}, 
+      #{mousePress,jdbcType=VARCHAR}, #{bookRank,jdbcType=VARCHAR}, #{tuijian,jdbcType=VARCHAR}, 
+      #{pictureString,jdbcType=VARCHAR}, #{productInstruction,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xiaomaoguai.gecco.testcrawler.bookInfo">
+    insert into book_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="bookId != null">
+        book_id,
+      </if>
+      <if test="qidianId != null">
+        qidian_id,
+      </if>
+      <if test="bookName != null">
+        book_name,
+      </if>
+      <if test="author != null">
+        author,
+      </if>
+      <if test="instruction != null">
+        instruction,
+      </if>
+      <if test="wordCount != null">
+        word_count,
+      </if>
+      <if test="mousePress != null">
+        mouse_press,
+      </if>
+      <if test="bookRank != null">
+        book_rank,
+      </if>
+      <if test="tuijian != null">
+        tuijian,
+      </if>
+      <if test="pictureString != null">
+        picture_string,
+      </if>
+      <if test="productInstruction != null">
+        product_instruction,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="bookId != null">
+        #{bookId,jdbcType=VARCHAR},
+      </if>
+      <if test="qidianId != null">
+        #{qidianId,jdbcType=VARCHAR},
+      </if>
+      <if test="bookName != null">
+        #{bookName,jdbcType=VARCHAR},
+      </if>
+      <if test="author != null">
+        #{author,jdbcType=VARCHAR},
+      </if>
+      <if test="instruction != null">
+        #{instruction,jdbcType=VARCHAR},
+      </if>
+      <if test="wordCount != null">
+        #{wordCount,jdbcType=VARCHAR},
+      </if>
+      <if test="mousePress != null">
+        #{mousePress,jdbcType=VARCHAR},
+      </if>
+      <if test="bookRank != null">
+        #{bookRank,jdbcType=VARCHAR},
+      </if>
+      <if test="tuijian != null">
+        #{tuijian,jdbcType=VARCHAR},
+      </if>
+      <if test="pictureString != null">
+        #{pictureString,jdbcType=VARCHAR},
+      </if>
+      <if test="productInstruction != null">
+        #{productInstruction,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xiaomaoguai.gecco.testcrawler.bookInfo">
+    update book_info
+    <set>
+      <if test="qidianId != null">
+        qidian_id = #{qidianId,jdbcType=VARCHAR},
+      </if>
+      <if test="bookName != null">
+        book_name = #{bookName,jdbcType=VARCHAR},
+      </if>
+      <if test="author != null">
+        author = #{author,jdbcType=VARCHAR},
+      </if>
+      <if test="instruction != null">
+        instruction = #{instruction,jdbcType=VARCHAR},
+      </if>
+      <if test="wordCount != null">
+        word_count = #{wordCount,jdbcType=VARCHAR},
+      </if>
+      <if test="mousePress != null">
+        mouse_press = #{mousePress,jdbcType=VARCHAR},
+      </if>
+      <if test="bookRank != null">
+        book_rank = #{bookRank,jdbcType=VARCHAR},
+      </if>
+      <if test="tuijian != null">
+        tuijian = #{tuijian,jdbcType=VARCHAR},
+      </if>
+      <if test="pictureString != null">
+        picture_string = #{pictureString,jdbcType=VARCHAR},
+      </if>
+      <if test="productInstruction != null">
+        product_instruction = #{productInstruction,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where book_id = #{bookId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xiaomaoguai.gecco.testcrawler.bookInfo">
+    update book_info
+    set qidian_id = #{qidianId,jdbcType=VARCHAR},
+      book_name = #{bookName,jdbcType=VARCHAR},
+      author = #{author,jdbcType=VARCHAR},
+      instruction = #{instruction,jdbcType=VARCHAR},
+      word_count = #{wordCount,jdbcType=VARCHAR},
+      mouse_press = #{mousePress,jdbcType=VARCHAR},
+      book_rank = #{bookRank,jdbcType=VARCHAR},
+      tuijian = #{tuijian,jdbcType=VARCHAR},
+      picture_string = #{pictureString,jdbcType=VARCHAR},
+      product_instruction = #{productInstruction,jdbcType=VARCHAR}
+    where book_id = #{bookId,jdbcType=VARCHAR}
+  </update>
+</mapper>
