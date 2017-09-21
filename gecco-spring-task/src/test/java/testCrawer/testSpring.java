@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.xiaomaoguai.gecco.mapper.bookInfoMapper;
 import com.xiaomaoguai.gecco.service.myservice.BookInfoService;
 import com.xiaomaoguai.gecco.testcrawler.bookInfo;
 /**
@@ -15,16 +16,15 @@ import com.xiaomaoguai.gecco.testcrawler.bookInfo;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 //告诉junit spring的配置文件
-@ContextConfiguration({"classpath:spring-context.xml"})
+@ContextConfiguration({"classpath:spring-context.xml,springmvc-servlet.xml"})
 public class testSpring {
     private final Logger logger= LoggerFactory.getLogger(this.getClass());
-  @Autowired
-    private BookInfoService bookInfoService;
+    @Autowired
+	private bookInfoMapper bookInfoMapper;
 
     @Test
     public void getSeckillList() throws Exception {
-    	bookInfo bookInfo =new bookInfo("HUIHIU", "15614564", "无尽", "LDB", "KHFKHFDSKDFS", "545", "54", "66", "13", "JKSJFDKS.COM", "CNKJCSHUIHSD");
-    	bookInfoService.insertBookInfo(bookInfo);
+    	bookInfo result  = bookInfoMapper.selectByPrimaryKey("f3cc41dcd56391e0");
         System.out.println();
 
     }

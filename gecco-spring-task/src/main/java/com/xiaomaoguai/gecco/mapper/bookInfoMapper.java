@@ -6,7 +6,6 @@ import com.xiaomaoguai.gecco.testcrawler.bookInfo;
 
 
 
-@Repository
 public interface bookInfoMapper {
     int deleteByPrimaryKey(String bookId);
 

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.xiaomaoguai.gecco.mapper.mymapper.bookInfoMapper">
+<mapper namespace="com.xiaomaoguai.gecco.mapper.bookInfoMapper">
   <resultMap id="BaseResultMap" type="com.xiaomaoguai.gecco.testcrawler.bookInfo">
     <id column="book_id" jdbcType="VARCHAR" property="bookId" />
     <result column="qidian_id" jdbcType="VARCHAR" property="qidianId" />
@@ -11,12 +11,13 @@
     <result column="mouse_press" jdbcType="VARCHAR" property="mousePress" />
     <result column="book_rank" jdbcType="VARCHAR" property="bookRank" />
     <result column="tuijian" jdbcType="VARCHAR" property="tuijian" />
+    <result column="category" jdbcType="VARCHAR" property="category" />
     <result column="picture_string" jdbcType="VARCHAR" property="pictureString" />
     <result column="product_instruction" jdbcType="VARCHAR" property="productInstruction" />
   </resultMap>
   <sql id="Base_Column_List">
     book_id, qidian_id, book_name, author, instruction, word_count, mouse_press, book_rank, 
-    tuijian, picture_string, product_instruction
+    tuijian, category,picture_string, product_instruction
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
@@ -31,12 +32,12 @@
   <insert id="insert" parameterType="com.xiaomaoguai.gecco.testcrawler.bookInfo">
     insert into book_info (book_id, qidian_id, book_name, 
       author, instruction, word_count, 
-      mouse_press, book_rank, tuijian, 
+      mouse_press, book_rank, tuijian, category,
       picture_string, product_instruction)
     values (#{bookId,jdbcType=VARCHAR}, #{qidianId,jdbcType=VARCHAR}, #{bookName,jdbcType=VARCHAR}, 
       #{author,jdbcType=VARCHAR}, #{instruction,jdbcType=VARCHAR}, #{wordCount,jdbcType=VARCHAR}, 
       #{mousePress,jdbcType=VARCHAR}, #{bookRank,jdbcType=VARCHAR}, #{tuijian,jdbcType=VARCHAR}, 
-      #{pictureString,jdbcType=VARCHAR}, #{productInstruction,jdbcType=VARCHAR})
+     #{category,jdbcType=VARCHAR},  #{pictureString,jdbcType=VARCHAR}, #{productInstruction,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.xiaomaoguai.gecco.testcrawler.bookInfo">
     insert into book_info
@@ -67,6 +68,9 @@
       </if>
       <if test="tuijian != null">
         tuijian,
+         <if test="category != null">
+        category,
+      </if>
       </if>
       <if test="pictureString != null">
         picture_string,
@@ -103,6 +107,9 @@
       <if test="tuijian != null">
         #{tuijian,jdbcType=VARCHAR},
       </if>
+      <if test="category != null">
+        #{category,jdbcType=VARCHAR},
+      </if>
       <if test="pictureString != null">
         #{pictureString,jdbcType=VARCHAR},
       </if>
@@ -111,7 +118,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.xiaomaoguai.gecco.testcrawler.bookInfo">
+  <!-- <update id="updateByPrimaryKeySelective" parameterType="com.xiaomaoguai.gecco.testcrawler.bookInfo">
     update book_info
     <set>
       <if test="qidianId != null">
@@ -160,5 +167,5 @@
       picture_string = #{pictureString,jdbcType=VARCHAR},
       product_instruction = #{productInstruction,jdbcType=VARCHAR}
     where book_id = #{bookId,jdbcType=VARCHAR}
-  </update>
+  </update> --><!-- 少个分类字段，暂时不用修改操作 -->
 </mapper>

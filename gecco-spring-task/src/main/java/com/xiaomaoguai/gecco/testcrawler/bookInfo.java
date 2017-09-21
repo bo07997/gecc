@@ -48,7 +48,8 @@ public class bookInfo implements HtmlBean{
 	
    @HtmlField(cssPath ="body > div.wrap > div.book-detail-wrap.center990 > div.book-information.cf > div.book-info > p:nth-child(4) > em:nth-child(7)")
 	private String tuijian;
-
+   @HtmlField(cssPath = "body > div.wrap > div.book-detail-wrap.center990 > div.book-information.cf > div.book-info > p.tag > a:nth-child(4)")
+   private String category;
    @Image
    @HtmlField(cssPath = "#bookImg > img")
    private String pictureString;
@@ -109,6 +110,7 @@ public class bookInfo implements HtmlBean{
 	public void setBooRank(String bookRank) {
 		this.bookRank = bookRank;
 	}
+	
 	public List<String> getUrls() {
 		return urls;
 	}
@@ -121,6 +123,13 @@ public class bookInfo implements HtmlBean{
 	}
 	public void setTuijian(String tuijian) {
 		this.tuijian = tuijian;
+	}
+	
+	public String getCategory() {
+		return category;
+	}
+	public void setCategory(String category) {
+		this.category = category;
 	}
 	public String getPictureString() {
 		return pictureString;

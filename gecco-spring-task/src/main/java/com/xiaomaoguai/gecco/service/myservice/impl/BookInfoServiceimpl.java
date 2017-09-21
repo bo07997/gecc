@@ -37,13 +37,13 @@ public class BookInfoServiceimpl implements BookInfoService {
 			if(book.getProductInstruction().length()>255){
 				book.setProductInstruction(book.getProductInstruction().substring(0, 250)+"....");
 			}
-			result = bookInfoMapper.insertSelective(book);
+		    result  = bookInfoMapper.insertSelective(book);
 		
-			System.out.println(result+">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+		    Logger.info("【书籍信息】插入成功!");
 		} catch (Exception e) {
-			Logger.error("【书籍信息】插入错误!");
+			Logger.error("【书籍信息】插入错误!",e);
 		}
-		return result;
+		return 0;
 	}
   
 }
